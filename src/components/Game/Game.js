@@ -15,7 +15,7 @@ function Game() {
 
   return (
     <>
-      <GuessHistory userGuesses={userGuesses} />
+      <GuessHistory userGuesses={userGuesses} answer={answer} />
       <GuessForm userGuesses={userGuesses} setUserGuesses={setUserGuesses} />
     </>
   );
