@@ -1,18 +1,28 @@
 import React from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessForm({ userGuesses, setUserGuesses }) {
+function GuessForm({ userGuesses, setUserGuesses, status, setStatus, answer }) {
   const [currentGuess, setCurrentGuess] = React.useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    console.info({ currentGuess });
-    setUserGuesses([...userGuesses, currentGuess]);
+    const nextGuesses = [...userGuesses, currentGuess];
+    setUserGuesses(nextGuesses);
     setCurrentGuess("");
+
+    if (currentGuess === answer) {
+      setStatus("won");
+    }
+
+    if (nextGuesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      setStatus("lost");
+    }
   };
 
   return (
     <form className="guess-input-wrapper" onSubmit={submitHandler}>
       <label htmlFor="guess-input">Enter guess:</label>
       <input
+        disabled={status !== "running"}
         required
         minLength={5}
         maxLength={5}

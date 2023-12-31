@@ -3,7 +3,7 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
-function GuessHistory({ userGuesses, answer }) {
+function GuessHistory({ userGuesses, answer, setStatus }) {
   return (
     <div className="guess-results">
       {range(NUM_OF_GUESSES_ALLOWED).map((index) => {
